@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人主页</title>
+</head>
+
+<body>
+    <ul class="emojis">
+        <li><a href="https://github.com/namecho" target="_blank" title="Github">&#xe811;</a></li>
+        <li><a href="mailto:3855680@qq.com" target="_blank" title="3855680@qq.com">&#xe626;</a></li>
+        <li><a href="https://www.zhihu.com/people/namecho" target="_blank" title="知乎">&#xea8b;</a></li>
+    </ul>
+
+    <svg viewBox="0 0 300 162">
+        <filter id="mix">
+            <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="5" />
+            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 60 -36" />
+        </filter>
+
+        <g filter="url(#mix)">
+            <rect width="300" height="50" x="0" y="50" rx="25" fill="#f6f000" />
+            <circle cx="40" cy="75" fill="#f6f000" id="pop" />
+        </g>
+    </svg>
+    <style>
+        @font-face {
+            font-family: 'iconfont';
+            /* project id 2489568 */
+            src: url('//at.alicdn.com/t/font_2489568_doyi6qtpqy4.eot');
+            src: url('//at.alicdn.com/t/font_2489568_doyi6qtpqy4.eot?#iefix') format('embedded-opentype'),
+                url('//at.alicdn.com/t/font_2489568_doyi6qtpqy4.woff2') format('woff2'),
+                url('//at.alicdn.com/t/font_2489568_doyi6qtpqy4.woff') format('woff'),
+                url('//at.alicdn.com/t/font_2489568_doyi6qtpqy4.ttf') format('truetype'),
+                url('//at.alicdn.com/t/font_2489568_doyi6qtpqy4.svg#iconfont') format('svg');
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: Helvetica, iconfont;
+            background-image: linear-gradient(144deg, rgb(0, 227, 235), rgb(55, 55, 255))
+        }
+
+        svg {
+            width: 600px;
+        }
+
+        .emojis {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            width: 600px;
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            padding: 0 20px;
+            box-sizing: border-box;
+            display: flex;
+        }
+
+        .emojis li {
+            flex: 1;
+            font-size: 60px;
+            text-align: center;
+            transition: .2s all ease-in-out;
+        }
+
+        .emojis li a {
+            text-decoration: none;
+            color: #f3113e;
+        }
+
+        .emojis li a:hover {
+            color: #f38a11;
+        }
+
+        .emojis li:hover {
+            transform: scale(1.6);
+        }
+
+        .emojis+svg #pop {
+            r: 20px;
+            transition: .2s r ease-in-out;
+        }
+
+        .emojis:hover+svg #pop {
+            r: 40px;
+        }
+    </style>
+    <script>
+        const pop = document.querySelector('#pop')
+
+        document.querySelector('.emojis').addEventListener('mousemove', (e) => {
+            let offset = (e.clientX - e.currentTarget.getBoundingClientRect().left) / 2
+
+            if (offset <= 40) offset = 40
+            if (offset >= 260) offset = 260
+
+            pop.setAttribute('cx', offset)
+        })
+    </script>
+</body>
+
+</html>
